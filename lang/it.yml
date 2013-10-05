@@ -1,0 +1,5 @@
+it:
+  Product:
+    SINGULARNAME: 'Prodotto'
+  Product:
+      PLURALNAME: 'Prodotti'
