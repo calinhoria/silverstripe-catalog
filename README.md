@@ -21,3 +21,4 @@
 ## Installation
 
     Unpack and copy the mobile folder into your SilverStripe project.
+    Run "dev/build" in your browser, for example: "http://localhost/silverstripe/dev/build?flush=all"

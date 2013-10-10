@@ -1,0 +1,4 @@
+Director:
+  rules:
+    '': 'RootURLController'
+    'catalog/$Locale/$URLSegmentCategory/$URLSegmentProduct': 'Catalog_Controller'

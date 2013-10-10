@@ -1,5 +1,7 @@
 it:
+  ProductAdmin:
+    TABVISIBILITY: Visibilità
+    TRANSLATIONS: Traduzioni
+    TABIMAGES: Immagini
   Product:
-    SINGULARNAME: 'Prodotto'
-  Product:
-      PLURALNAME: 'Prodotti'
+    PRINCIPALIMAGE: 'Immagine Principale'
