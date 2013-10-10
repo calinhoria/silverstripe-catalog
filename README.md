@@ -17,6 +17,7 @@
 ##Requirements
 
     Translatable module https://github.com/silverstripe/silverstripe-translatable
+    SortableUploadfield https://github.com/giontch/silverstripe-sortableuploadfield
 
 ## Installation
 
