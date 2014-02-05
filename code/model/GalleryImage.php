@@ -2,8 +2,6 @@
 
 class GalleryImage extends Image {
 
-
-
     public static $has_one = array(
         'Product' => 'Product'
     );

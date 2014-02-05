@@ -17,6 +17,10 @@
             "Gallery" => "GalleryImage",
             "ProductTranslations" => "ProductTranslation"
         );
+        
+        static $belongs_many_many = array(
+            "Categories" => "Category"
+        );
 
         static $searchable_fields = array(
             'Title' => array(
@@ -50,15 +54,16 @@
 
         public function getCMSFields() {
             $fields = parent::getCMSFields();
-
+                        
             $start = new DateField("Start", "Visibile Da");
             $start->setConfig('showcalendar', true);
             $end = new DateField("End", "Visibile Fino");
             $end->setConfig('showcalendar', true);
 
+            $fields->addFieldToTab("Root.Visibility", new TreeMultiselectField("Categories", "Categorie", "Category"));
             $fields->addFieldToTab("Root.Visibility", new CheckboxField("Hide", "Nascondi"));
             $fields->addFieldToTab("Root.Visibility", $start);
-            $fields->addFieldToTab("Root.Visibility", $end);
+            $fields->addFieldToTab("Root.Visibility", $end);                        
 
             $fields->addFieldToTab("Root.Images", new UploadField("PrincipalImage", _t("Product.PRINCIPALIMAGE", "PrincipalImage")));
 
@@ -76,6 +81,7 @@
 
             $fields->removeByName("ProductTranslations");
             $fields->removeByName("Gallery");
+            $fields->removeByName("Categories");
 
             return $fields;
         }
@@ -86,6 +92,27 @@
 
         public function plural_name() {
             return _t($this->class.'.PLURALNAME', "Prodotti");
+        }
+        
+        public function DirectCategories() {
+            return $this->getManyManyComponents('Category');
+	}
+
+        public function onBeforeDelete(){
+            parent::onBeforeDelete();
+            if($this->ProductTranslations()){
+                $trans = $this->ProductTranslations();
+                if($trans)foreach($trans as $tran){
+                    $tran->delete();
+                }
+            }
+
+            if($this->Gallery()){
+                $gallery = $this->Gallery();
+                if($gallery)foreach($gallery as $image){
+                    $image->delete();
+                }
+            }
         }
 
         function Locales() {

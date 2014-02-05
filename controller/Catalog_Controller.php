@@ -15,7 +15,6 @@
         }
 
         public function index(){
-
             $this->_producturl = $this->urlParams['URLSegmentProduct'];
             $this->_categoryurl = $this->urlParams['URLSegmentCategory'];
             $this->_locale = $this->urlParams['Locale'];
@@ -25,11 +24,9 @@
             }elseif( $this->_categoryurl != NULL ){
                 echo 2;
             }
-
         }
 
         public function product(){
-
             $t = ProductTranslation::get()->filter(
                 array(
                     'URLSegment' => $this->_producturl,

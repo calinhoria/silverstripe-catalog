@@ -25,7 +25,6 @@ class ProductURLSegmentField extends TextField {
     public function suggest($request) {
         if(!$request->getVar('value')) return $this->httpError(405);
         $product = $this->getProduct();
-
         $product->URLSegment = $product->generateURLSegment($request->getVar('value'));
         $count = 2;
         while(!$product->validURLSegment()) {

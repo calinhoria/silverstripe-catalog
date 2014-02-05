@@ -1,0 +1,5 @@
+.class-Category.hide span{
+    text-decoration:line-through;
+    color: red;
+}
+.cms #Form_EditForm_File tr[data-class=Category] td.col-Icon { background: transparent url(../images/icons/blue-folder-horizontal.png) no-repeat center; }

@@ -25,8 +25,8 @@ class ProductTranslation extends DataObject {
         'URLSegment' => 'URL'
     );
 
-    public static $defaults = array(
-        "URLSegment" => ""
+    public static $indexes = array(
+        "URLSegment" => true
     );
 
     function getCMSFields(){
@@ -50,7 +50,6 @@ class ProductTranslation extends DataObject {
             $baseLink = Controller::join_links (
                 Director::absoluteBaseURL()
             );
-
             $url = (strlen($baseLink) > 36) ? "..." .substr($baseLink, -32) : $baseLink;
             $urlsegment = new ProductURLSegmentField("URLSegment", $this->fieldLabel('URLSegment'));
             $urlsegment->setURLPrefix($url);
@@ -64,7 +63,7 @@ class ProductTranslation extends DataObject {
             $urlsegment->setHelpText($helpText);
 
             $fields->addFieldToTab('Root.Metadata', new TextField("MetaTitle", "Meta title"));
-            $fields->addFieldToTab('Root.Metadata', $urlsegment);
+            //$fields->addFieldToTab('Root.Main', $urlsegment, 'Content');
             $fields->addFieldToTab('Root.Metadata', new TextareaField("MetaKeywords", "Meta keywords"));
             $fields->addFieldToTab('Root.Metadata', new TextareaField("MetaDescription", "Meta description"));
 
@@ -82,7 +81,7 @@ class ProductTranslation extends DataObject {
 
         }
         $fields->removeByName("ProductID");
-        $fields->add(new HiddenField("IDPT", "ID", $this->ID));
+        //$fields->add(new HiddenField("IDPT", "ID", $this->ID));
         return $fields;
     }
 
